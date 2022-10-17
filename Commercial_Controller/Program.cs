@@ -6,7 +6,24 @@ namespace Commercial_Controller
         static void Main()
         {
 
-            FloorRequestButton testFloorRequestButton = new FloorRequestButton(4, "up");
+            Elevator testElevator = new Elevator("1");
+            testElevator.addNewRequest(5);
+            testElevator.addNewRequest(2);
+            testElevator.addNewRequest(10);
+            System.Console.WriteLine(testElevator.ID);
+            System.Console.WriteLine(testElevator.status);
+            System.Console.WriteLine(testElevator.amountOfFloors);
+            System.Console.WriteLine(testElevator.currentFloor);
+            System.Console.WriteLine("Door ID: " + testElevator.door.ID);
+            System.Console.WriteLine("Door status: " + testElevator.door.status);
+            System.Console.WriteLine(testElevator.floorRequestList);
+            System.Console.WriteLine(testElevator.direction);
+            System.Console.WriteLine(testElevator.overweight);
+
+
+
+
+
 
 
 
@@ -17,10 +34,11 @@ namespace Commercial_Controller
             // System.Console.WriteLine(testbouton.floor);
 
 
-            System.Console.WriteLine(testFloorRequestButton.ID);
-            System.Console.WriteLine(testFloorRequestButton.status);
-            System.Console.WriteLine(testFloorRequestButton.floor);
-            System.Console.WriteLine(testFloorRequestButton.direction);
+            // FloorRequestButton testFloorRequestButton = new FloorRequestButton(4, "up");
+            // System.Console.WriteLine(testFloorRequestButton.ID);
+            // System.Console.WriteLine(testFloorRequestButton.status);
+            // System.Console.WriteLine(testFloorRequestButton.floor);
+            // System.Console.WriteLine(testFloorRequestButton.direction);
 
 
             // Door testDoor = new Door(1, "closed");
