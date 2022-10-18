@@ -14,8 +14,8 @@ namespace Commercial_Controller
                 System.Console.WriteLine("floor request: " + floor);
             System.Console.WriteLine("======================");
             testElevator.move();
-            foreach (int floor in testElevator.floorRequestList)
-                System.Console.WriteLine("floor after move: " + floor);
+            foreach (int floor in testElevator.completedRequestsList)
+                System.Console.WriteLine("floor served: " + floor);
             // testElevator.operateDoors();
             // System.Console.WriteLine("The door are now : " + testElevator.door.status);
             // System.Console.WriteLine(testElevator.ID);

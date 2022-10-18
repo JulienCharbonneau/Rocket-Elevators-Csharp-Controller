@@ -13,6 +13,7 @@ namespace Commercial_Controller
         public List<int> floorRequestList = new List<int>();
         public string direction = "empty";
         public bool overweight = false;
+        public List<int> completedRequestsList = new List<int>();
 
 
         public Elevator(int _id, string _status, int _amountOfFloors, int _currentFloor)
@@ -45,8 +46,8 @@ namespace Commercial_Controller
                 }
                 status = "stopped";
                 operateDoors();
-                floorRequestList.Remove(1);
-                List<int> completedRequestsList = new List<int>();
+                floorRequestList.RemoveAt(0);
+
                 completedRequestsList.Add(destination);
 
             }
