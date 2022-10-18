@@ -5,22 +5,53 @@ namespace Commercial_Controller
 {
     public class Elevator
     {
-        public string ID;
-        public string status = "idle";
-        public int amountOfFloors = 2;
-        public int currentFloor = 1;
+        public int ID;
+        public string status;
+        public int amountOfFloors;
+        public int currentFloor;
         public Door door = new Door(1, "closed");
         public List<int> floorRequestList = new List<int>();
-        public string direction = "down";
+        public string direction = "empty";
         public bool overweight = false;
 
-        public Elevator(string _elevatorID)
+
+        public Elevator(int _id, string _status, int _amountOfFloors, int _currentFloor)
         {
-            ID = _elevatorID;
-            // System.Console.WriteLine("door: ", door);
+            ID = _id;
+            status = _status;
+            amountOfFloors = _amountOfFloors;
+            currentFloor = _currentFloor;
         }
         public void move()
         {
+            while (floorRequestList.Count > 0)
+            {
+                status = "moving";
+                sortFloorList();
+                int destination = floorRequestList[0];
+                if (direction == "up")
+                {
+                    while (currentFloor < destination)
+                    {
+                        currentFloor++;
+                    }
+                }
+                else if (direction == "down")
+                {
+                    while (currentFloor > destination)
+                    {
+                        currentFloor--;
+                    }
+                }
+                status = "stopped";
+                operateDoors();
+                floorRequestList.Remove(1);
+                List<int> completedRequestsList = new List<int>();
+                completedRequestsList.Add(destination);
+
+            }
+            status = "idle";
+            direction = "empty";
 
         }
 

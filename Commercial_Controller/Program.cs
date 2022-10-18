@@ -6,13 +6,16 @@ namespace Commercial_Controller
         static void Main()
         {
 
-            Elevator testElevator = new Elevator("1");
+            Elevator testElevator = new Elevator(1, "wait", 12, 1);
             testElevator.addNewRequest(5);
             testElevator.addNewRequest(2);
             testElevator.addNewRequest(10);
-            testElevator.sortFloorList();
             foreach (int floor in testElevator.floorRequestList)
-                System.Console.WriteLine(floor);
+                System.Console.WriteLine("floor request: " + floor);
+            System.Console.WriteLine("======================");
+            testElevator.move();
+            foreach (int floor in testElevator.floorRequestList)
+                System.Console.WriteLine("floor after move: " + floor);
             // testElevator.operateDoors();
             // System.Console.WriteLine("The door are now : " + testElevator.door.status);
             // System.Console.WriteLine(testElevator.ID);
