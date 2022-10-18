@@ -6,7 +6,8 @@ namespace Commercial_Controller
         static void Main()
         {
 
-            Column testColumn = new Column(1, "online", 2, 2, false);
+            Column testColumn = new Column(1, "online", 2, 3, false);
+            testColumn.checkIfElevatorIsBetter(1, testColumn.bestElevatorInformations, 10);
             System.Console.WriteLine("this is a clolumn: " + testColumn);
 
 

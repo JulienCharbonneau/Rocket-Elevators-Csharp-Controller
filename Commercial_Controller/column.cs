@@ -13,6 +13,7 @@ namespace Commercial_Controller
         public List<CallButton> callButtonsList = new List<CallButton>();
         public List<int> servedFloorsList = new List<int>();
         public bool isBasement;
+        public BestElevatorInformations bestElevatorInformations = new BestElevatorInformations();
 
 
 
@@ -23,6 +24,7 @@ namespace Commercial_Controller
             amountOfFloors = _amountOfFloors;
             amountOfElevators = _amountOfElevators;
             isBasement = _isBasement;
+            createElevators(amountOfFloors, amountOfElevators);
             createCallButtons(amountOfFloors, isBasement);
         }
         public void createCallButtons(int amountOfFloors, bool isBasement)
@@ -58,11 +60,52 @@ namespace Commercial_Controller
             }
         }
 
+        public void createElevators(int _amountOfFloors, int _amountOfElevators)
+        {
+            int elevatorID = 1;
+            for (int i = 0; i < _amountOfElevators; i++)
+            {
+                Elevator elevator = new Elevator(elevatorID, "idle", _amountOfElevators, 1);
+                elevatorsList.Add(elevator);
+                elevatorID++;
+                System.Console.WriteLine("elevator in the list id:" + elevatorsList[i].ID);
+            }
+        }
+
+
+        public void findElevator(int requestedFloor, int requestedDirection)
+        {
+
+        }
+
+        public void checkIfElevatorIsBetter(int scoreToCheck, BestElevatorInformations info, int floor)
+        {
+            if (scoreToCheck < info.bestScore)
+            {
+                info.bestScore = scoreToCheck;
+            }
+            System.Console.WriteLine("info bestScore:" + info.bestScore);
+        }
+
         //Simulate when a user press a button on a floor to go back to the first floor
         // public Elevator requestElevator(int userPosition, string direction)
         // {
 
         // }
 
+    }
+
+
+
+    public class BestElevatorInformations
+    {
+        public int bestScore = 5;
+        public int referenceGap;
+        public Elevator bestElevator;
+
+        public BestElevatorInformations()
+        {
+
+        }
     }
 }
