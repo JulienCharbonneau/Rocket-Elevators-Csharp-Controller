@@ -9,12 +9,12 @@ namespace Commercial_Controller
         public string status;
         public int amountOfFloors;
         public int amountOfElevators;
-        public List<Elevator> elevatorsList = new List<Elevator>();
         public List<CallButton> callButtonsList = new List<CallButton>();
         public List<int> servedFloorsList = new List<int>();
         public bool isBasement;
         public BestElevatorInformations bestElevatorInformations = new BestElevatorInformations();
 
+        public List<Elevator> elevatorsList = new List<Elevator>();
 
 
         public Column(int _ID, string _status, int _amountOfFloors, int _amountOfElevators, bool _isBasement)
@@ -71,27 +71,110 @@ namespace Commercial_Controller
                 System.Console.WriteLine("elevator in the list id:" + elevatorsList[i].ID);
             }
         }
-
-
-        public void findElevator(int requestedFloor, int requestedDirection)
+        //  Simulate when a user press a button on a floor to go back to the first floor
+        public void requestElevator(int userPosition, string direction)
         {
-
+            Elevator elevator = findElevator(userPosition, direction);
+            elevator.addNewRequest(1);
+            elevator.move();
+            elevator.addNewRequest(1);
+            elevator.move();
         }
 
-        public void checkIfElevatorIsBetter(int scoreToCheck, BestElevatorInformations info, int floor)
+
+        public Elevator findElevator(int requestedFloor, string requestedDirection)
+        {
+
+            if (requestedFloor == 1)
+            {
+                foreach (Elevator elevator in elevatorsList)
+                {
+                    if (elevator.currentFloor == 1 && elevator.status == "stopped")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(1, elevator, bestElevatorInformations, requestedFloor);
+                    }
+                    else if (elevator.currentFloor == 1 && elevator.status == "idle")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(2, elevator, bestElevatorInformations, requestedFloor);
+                    }
+                    else if (elevator.currentFloor < 1 && elevator.direction == "up")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(3, elevator, bestElevatorInformations, requestedFloor);
+                    }
+                    else if (elevator.status == "idle")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(4, elevator, bestElevatorInformations, requestedFloor);
+
+                    }
+                    else
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(5, elevator, bestElevatorInformations, requestedFloor);
+
+                    }
+
+                    System.Console.WriteLine("info best elevator " + bestElevatorInformations.bestElevator.ID);
+                }
+            }
+            else
+            {
+                foreach (Elevator elevator in elevatorsList)
+                {
+                    if (requestedFloor == elevator.currentFloor && elevator.status == "stopped" && requestedDirection == elevator.direction)
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(1, elevator, bestElevatorInformations, requestedFloor);
+
+                    }
+                    else if (requestedFloor > elevator.currentFloor && elevator.direction == "up" && requestedDirection == "up")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(2, elevator, bestElevatorInformations, requestedFloor);
+                    }
+                    else if (requestedFloor < elevator.currentFloor && elevator.direction == "down" && requestedDirection == "down")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(2, elevator, bestElevatorInformations, requestedFloor);
+
+                    }
+                    else if (elevator.status == "idle")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(4, elevator, bestElevatorInformations, requestedFloor);
+                    }
+                    else
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(5, elevator, bestElevatorInformations, requestedFloor);
+                    }
+                }
+
+            }
+            return bestElevatorInformations.bestElevator;
+        }
+
+        public BestElevatorInformations checkIfElevatorIsBetter(int scoreToCheck, Elevator newElevator, BestElevatorInformations info, int floor)
         {
             if (scoreToCheck < info.bestScore)
             {
                 info.bestScore = scoreToCheck;
+                info.bestElevator = newElevator;
+                info.referenceGap = Math.Abs(newElevator.currentFloor - floor);
+            }
+            else if (scoreToCheck == info.bestScore)
+            {
+                int gap = Math.Abs(newElevator.currentFloor - floor);
+                if (info.referenceGap > gap)
+                {
+                    info.bestElevator = newElevator;
+                    info.referenceGap = gap;
+                }
+
+                System.Console.WriteLine("gap: " + gap);
             }
             System.Console.WriteLine("info bestScore:" + info.bestScore);
+            System.Console.WriteLine("info bestElevatorID:" + info.bestElevator.ID);
+            System.Console.WriteLine("info reference Gap: " + info.referenceGap);
+            System.Console.WriteLine("info : " + info.bestElevator.ID);
+
+            return info;
+
         }
 
-        //Simulate when a user press a button on a floor to go back to the first floor
-        // public Elevator requestElevator(int userPosition, string direction)
-        // {
-
-        // }
 
     }
 
@@ -99,8 +182,8 @@ namespace Commercial_Controller
 
     public class BestElevatorInformations
     {
-        public int bestScore = 5;
-        public int referenceGap;
+        public int bestScore = 6;
+        public int referenceGap = 10000000;
         public Elevator bestElevator;
 
         public BestElevatorInformations()

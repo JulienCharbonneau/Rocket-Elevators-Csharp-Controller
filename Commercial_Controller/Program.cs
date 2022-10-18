@@ -7,8 +7,9 @@ namespace Commercial_Controller
         {
 
             Column testColumn = new Column(1, "online", 2, 3, false);
-            testColumn.checkIfElevatorIsBetter(1, testColumn.bestElevatorInformations, 10);
-            System.Console.WriteLine("this is a clolumn: " + testColumn);
+            testColumn.bestElevatorInformations.bestElevator = testColumn.elevatorsList[2];
+            testColumn.findElevator(3, "up");
+            System.Console.WriteLine("this is a column: " + testColumn);
 
 
 
