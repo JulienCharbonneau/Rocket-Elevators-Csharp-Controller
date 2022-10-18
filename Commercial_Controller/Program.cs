@@ -10,15 +10,20 @@ namespace Commercial_Controller
             testElevator.addNewRequest(5);
             testElevator.addNewRequest(2);
             testElevator.addNewRequest(10);
-            System.Console.WriteLine(testElevator.ID);
-            System.Console.WriteLine(testElevator.status);
-            System.Console.WriteLine(testElevator.amountOfFloors);
-            System.Console.WriteLine(testElevator.currentFloor);
-            System.Console.WriteLine("Door ID: " + testElevator.door.ID);
-            System.Console.WriteLine("Door status: " + testElevator.door.status);
-            System.Console.WriteLine(testElevator.floorRequestList);
-            System.Console.WriteLine(testElevator.direction);
-            System.Console.WriteLine(testElevator.overweight);
+            testElevator.sortFloorList();
+            foreach (int floor in testElevator.floorRequestList)
+                System.Console.WriteLine(floor);
+            // testElevator.operateDoors();
+            // System.Console.WriteLine("The door are now : " + testElevator.door.status);
+            // System.Console.WriteLine(testElevator.ID);
+            // System.Console.WriteLine(testElevator.status);
+            // System.Console.WriteLine(testElevator.amountOfFloors);
+            // System.Console.WriteLine(testElevator.currentFloor);
+            // System.Console.WriteLine("Door ID: " + testElevator.door.ID);
+            // System.Console.WriteLine("Door status: " + testElevator.door.status);
+            // System.Console.WriteLine(testElevator.floorRequestList);
+            // System.Console.WriteLine(testElevator.direction);
+            // System.Console.WriteLine(testElevator.overweight);
 
 
 

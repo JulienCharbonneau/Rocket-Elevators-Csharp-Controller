@@ -8,7 +8,7 @@ namespace Commercial_Controller
         public string ID;
         public string status = "idle";
         public int amountOfFloors = 2;
-        public int currentFloor = 33;
+        public int currentFloor = 1;
         public Door door = new Door(1, "closed");
         public List<int> floorRequestList = new List<int>();
         public string direction = "down";
@@ -24,22 +24,52 @@ namespace Commercial_Controller
 
         }
 
+        public void sortFloorList()
+        {
+            if (direction == "up")
+            {
+                floorRequestList.Sort();
+            }
+            else
+            {
+                floorRequestList.Sort();
+                floorRequestList.Reverse();
+
+
+            }
+        }
+
+        public void operateDoors()
+        {
+            door.status = "opened";
+            System.Console.WriteLine("====================== ");
+            System.Console.WriteLine("wait 5 seconds");
+            Thread.Sleep(5000);
+
+        }
+
         public void addNewRequest(int requestedFloor)
         {
-            if (floorRequestList.Count == 0)
-            {
-                floorRequestList.Add(requestedFloor);
-            }
+            foreach (int floor in floorRequestList)
+                if (floor == requestedFloor)
+                {
+                    break;
+                }
+
+
             if (currentFloor < requestedFloor)
             {
                 direction = "up";
+                floorRequestList.Add(requestedFloor);
+
             }
             if (currentFloor > requestedFloor)
             {
+                floorRequestList.Add(requestedFloor);
                 direction = "down";
             }
-            System.Console.WriteLine("request list " + requestedFloor);
-            System.Console.WriteLine("request direction: " + direction);
+
+
 
         }
 
