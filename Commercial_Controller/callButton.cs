@@ -4,12 +4,14 @@ namespace Commercial_Controller
     public class CallButton
     {
         public int ID = 1;
+        public string status;
         public int floor;
-        public string status = "status";
         public string direction;
 
-        public CallButton(int _floor, string _direction)
+        public CallButton(int callButtonID, string _status, int _floor, string _direction)
         {
+            ID = callButtonID;
+            status = _status;
             floor = _floor;
             direction = _direction;
 

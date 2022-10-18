@@ -6,16 +6,25 @@ namespace Commercial_Controller
         static void Main()
         {
 
-            Elevator testElevator = new Elevator(1, "wait", 12, 1);
-            testElevator.addNewRequest(5);
-            testElevator.addNewRequest(2);
-            testElevator.addNewRequest(10);
-            foreach (int floor in testElevator.floorRequestList)
-                System.Console.WriteLine("floor request: " + floor);
-            System.Console.WriteLine("======================");
-            testElevator.move();
-            foreach (int floor in testElevator.completedRequestsList)
-                System.Console.WriteLine("floor served: " + floor);
+            Column testColumn = new Column(1, "online", 2, 2, false);
+            System.Console.WriteLine("this is a clolumn: " + testColumn);
+
+
+
+
+
+
+
+            // Elevator testElevator = new Elevator(1, "wait", 12, 1);
+            // testElevator.addNewRequest(5);
+            // testElevator.addNewRequest(2);
+            // testElevator.addNewRequest(10);
+            // foreach (int floor in testElevator.floorRequestList)
+            //     System.Console.WriteLine("floor request: " + floor);
+            // System.Console.WriteLine("======================");
+            // testElevator.move();
+            // foreach (int floor in testElevator.completedRequestsList)
+            //     System.Console.WriteLine("floor served: " + floor);
             // testElevator.operateDoors();
             // System.Console.WriteLine("The door are now : " + testElevator.door.status);
             // System.Console.WriteLine(testElevator.ID);
