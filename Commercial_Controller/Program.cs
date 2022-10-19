@@ -10,8 +10,8 @@ namespace Commercial_Controller
 
 
 
-            Battery testBattery = new Battery(1, 2, 10, 2, 2);
-            System.Console.WriteLine("this is a battery: " + testBattery.ID);
+            // Battery testBattery = new Battery(1, 2, 10, 2, 2);
+            // System.Console.WriteLine("this is a battery: " + testBattery.ID);
 
             // Column testColumn = new Column(1, "online", 2, 3, false);
             // testColumn.bestElevatorInformations.bestElevator = testColumn.elevatorsList[2];

@@ -110,13 +110,31 @@ namespace Commercial_Controller
             }
 
         }
-        public void findBestColumn(int _requestedFloor)
+        public Column findBestColumn(int _requestedFloor)
         {
-
+            foreach (Column column in columnsList)
+            {
+                if (column.servedFloorsList.Contains(_requestedFloor))
+                {
+                    return column;
+                }
+                System.Console.WriteLine("column served floor list: " + column.servedFloorsList);
+            }
+            return columnsList[0];
         }
+
+
+
         //Simulate when a user press a button at the lobby
         public void assignElevator(int _requestedFloor, string _direction)
         {
+            Column column = findBestColumn(_requestedFloor);
+            Elevator elevator = column.findElevator(1, _direction);
+            elevator.addNewRequest(1);
+            elevator.move();
+            elevator.addNewRequest(_requestedFloor);
+            elevator.move();
+
 
         }
     }
