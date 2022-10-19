@@ -15,7 +15,9 @@ namespace Commercial_Controller
 
         public int amountOfElevatorPerColumn;
         public int columnID = 1;
+        public int floorRequestButtonID = 1;
 
+        public int buttonFloor = -1;
 
 
         public Battery(int _ID, int _amountOfColumns, int _amountOfFloors, int _amountOfBasements, int _amountOfElevatorPerColumn)
@@ -28,13 +30,13 @@ namespace Commercial_Controller
 
             if (amountOfBasements > 0)
             {
+                createBasementFloorRequestButtons(amountOfBasements);
                 createBasementColumn(amountOfBasements, amountOfElevatorPerColumn);
-                amountOfBasements--;
+                amountOfColumns--;
             }
 
+            createFloorRequestButtons(amountOfFloors);
             createColumns(amountOfColumns, amountOfFloors, amountOfElevatorPerColumn);
-            System.Console.WriteLine(" colomns list by id: " + columnsList[0].ID);
-            System.Console.WriteLine(" colomns list by id: " + columnsList[1].ID);
         }
 
         public void createBasementColumn(int amountOfBasements, int amountOfElevatorPerColumn)
@@ -80,6 +82,34 @@ namespace Commercial_Controller
             System.Console.WriteLine("amount of floors per column: " + amountOfFloorsPerColumn);
         }
 
+
+        public void createFloorRequestButtons(int amountOfFloors)
+        {
+            int buttonFloor = 1;
+            for (int i = 0; i < amountOfFloors; i++)
+            {
+                FloorRequestButton floorRequestButton = new FloorRequestButton(floorRequestButtonID, "OFF", buttonFloor, "Up");
+                floorRequestsButtonsList.Add(floorRequestButton);
+                floorRequestButtonID++;
+                buttonFloor++;
+
+            }
+        }
+
+        public void createBasementFloorRequestButtons(int amountOfBasements)
+        {
+            int buttonFloor = -1;
+
+            for (int i = 0; i < amountOfBasements; i++)
+            {
+                FloorRequestButton floorRequestButton = new FloorRequestButton(floorRequestButtonID, "OFF", buttonFloor, "Down");
+                floorRequestsButtonsList.Add(floorRequestButton);
+
+                buttonFloor--;
+                floorRequestButtonID++;
+            }
+
+        }
         public void findBestColumn(int _requestedFloor)
         {
 
