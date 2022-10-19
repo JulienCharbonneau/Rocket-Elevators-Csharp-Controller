@@ -79,7 +79,6 @@ namespace Commercial_Controller
                 columnsList.Add(column);
                 columnID++;
             }
-            System.Console.WriteLine("amount of floors per column: " + amountOfFloorsPerColumn);
         }
 
 
@@ -88,7 +87,7 @@ namespace Commercial_Controller
             int buttonFloor = 1;
             for (int i = 0; i < amountOfFloors; i++)
             {
-                FloorRequestButton floorRequestButton = new FloorRequestButton(floorRequestButtonID, "OFF", buttonFloor, "Up");
+                FloorRequestButton floorRequestButton = new FloorRequestButton(floorRequestButtonID, "off", buttonFloor, "up");
                 floorRequestsButtonsList.Add(floorRequestButton);
                 floorRequestButtonID++;
                 buttonFloor++;
@@ -102,7 +101,7 @@ namespace Commercial_Controller
 
             for (int i = 0; i < amountOfBasements; i++)
             {
-                FloorRequestButton floorRequestButton = new FloorRequestButton(floorRequestButtonID, "OFF", buttonFloor, "Down");
+                FloorRequestButton floorRequestButton = new FloorRequestButton(floorRequestButtonID, "off", buttonFloor, "down");
                 floorRequestsButtonsList.Add(floorRequestButton);
 
                 buttonFloor--;
@@ -118,7 +117,6 @@ namespace Commercial_Controller
                 {
                     return column;
                 }
-                System.Console.WriteLine("column served floor list: " + column.servedFloorsList);
             }
             return columnsList[0];
         }
@@ -126,7 +124,7 @@ namespace Commercial_Controller
 
 
         //Simulate when a user press a button at the lobby
-        public void assignElevator(int _requestedFloor, string _direction)
+        public (Column, Elevator) assignElevator(int _requestedFloor, string _direction)
         {
             Column column = findBestColumn(_requestedFloor);
             Elevator elevator = column.findElevator(1, _direction);
@@ -135,7 +133,7 @@ namespace Commercial_Controller
             elevator.addNewRequest(_requestedFloor);
             elevator.move();
 
-
+            return (column, elevator);
         }
     }
 }

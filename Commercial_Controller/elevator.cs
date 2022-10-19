@@ -10,7 +10,7 @@ namespace Commercial_Controller
         public int amountOfFloors;
         public int currentFloor;
         public Door door = new Door(1, "closed");
-        public List<int> floorRequestList = new List<int>();
+        public List<int> floorRequestsList = new List<int>();
         public string direction = "empty";
         public bool overweight = false;
         public List<int> completedRequestsList = new List<int>();
@@ -25,11 +25,11 @@ namespace Commercial_Controller
         }
         public void move()
         {
-            while (floorRequestList.Count > 0)
+            while (floorRequestsList.Count > 0)
             {
                 status = "moving";
                 sortFloorList();
-                int destination = floorRequestList[0];
+                int destination = floorRequestsList[0];
                 if (direction == "up")
                 {
                     while (currentFloor < destination)
@@ -46,7 +46,7 @@ namespace Commercial_Controller
                 }
                 status = "stopped";
                 operateDoors();
-                floorRequestList.RemoveAt(0);
+                floorRequestsList.RemoveAt(0);
 
                 completedRequestsList.Add(destination);
 
@@ -60,12 +60,12 @@ namespace Commercial_Controller
         {
             if (direction == "up")
             {
-                floorRequestList.Sort();
+                floorRequestsList.Sort();
             }
             else
             {
-                floorRequestList.Sort();
-                floorRequestList.Reverse();
+                floorRequestsList.Sort();
+                floorRequestsList.Reverse();
 
 
             }
@@ -82,22 +82,25 @@ namespace Commercial_Controller
 
         public void addNewRequest(int requestedFloor)
         {
-            foreach (int floor in floorRequestList)
-                if (floor == requestedFloor)
-                {
-                    break;
-                }
+
+            if (floorRequestsList.Contains(requestedFloor))
+            {
+
+            }
+            else
+            {
+
+                floorRequestsList.Add(requestedFloor);
+            }
 
 
             if (currentFloor < requestedFloor)
             {
                 direction = "up";
-                floorRequestList.Add(requestedFloor);
 
             }
             if (currentFloor > requestedFloor)
             {
-                floorRequestList.Add(requestedFloor);
                 direction = "down";
             }
 

@@ -10,8 +10,32 @@ namespace Commercial_Controller
 
 
 
-            // Battery testBattery = new Battery(1, 2, 10, 2, 2);
-            // System.Console.WriteLine("this is a battery: " + testBattery.ID);
+            // Battery testBattery = new Battery(1, 4, 60, 6, 5);
+
+
+            // testBattery.columnsList[2].elevatorsList[0].currentFloor = 1;
+            // testBattery.columnsList[2].elevatorsList[0].direction = "up";
+            // testBattery.columnsList[2].elevatorsList[0].floorRequestsList.Add(21);
+
+            // testBattery.columnsList[2].elevatorsList[1].currentFloor = 23;
+            // testBattery.columnsList[2].elevatorsList[1].direction = "up";
+            // testBattery.columnsList[2].elevatorsList[1].floorRequestsList.Add(28);
+
+            // testBattery.columnsList[2].elevatorsList[2].currentFloor = 33;
+            // testBattery.columnsList[2].elevatorsList[2].direction = "down";
+            // testBattery.columnsList[2].elevatorsList[2].floorRequestsList.Add(1);
+
+            // testBattery.columnsList[2].elevatorsList[3].currentFloor = 40;
+            // testBattery.columnsList[2].elevatorsList[3].direction = "down";
+            // testBattery.columnsList[2].elevatorsList[3].floorRequestsList.Add(24);
+
+            // testBattery.columnsList[2].elevatorsList[4].currentFloor = 39;
+            // testBattery.columnsList[2].elevatorsList[4].direction = "down";
+            // testBattery.columnsList[2].elevatorsList[4].floorRequestsList.Add(1);
+
+
+            // testBattery.assignElevator(36, "up");
+
 
             // Column testColumn = new Column(1, "online", 2, 3, false);
             // testColumn.bestElevatorInformations.bestElevator = testColumn.elevatorsList[2];

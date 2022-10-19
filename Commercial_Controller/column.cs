@@ -36,7 +36,7 @@ namespace Commercial_Controller
                 int callButtonID = 1;
                 for (int i = 0; i < amountOfFloors; i++)
                 {
-                    CallButton callButton = new CallButton(callButtonID, "OFF", buttonFloor, "Up");
+                    CallButton callButton = new CallButton(callButtonID, "off", buttonFloor, "up");
                     callButtonsList.Add(callButton);
                     buttonFloor--;
                     callButtonID++;
@@ -49,12 +49,10 @@ namespace Commercial_Controller
                 int callButtonID = 1;
                 for (int i = 0; i < amountOfFloors; i++)
                 {
-                    CallButton callButton = new CallButton(callButtonID, "OFF", buttonFloor, "Down");
+                    CallButton callButton = new CallButton(callButtonID, "off", buttonFloor, "down");
                     callButtonsList.Add(callButton);
                     buttonFloor++;
                     callButtonID++;
-                    Console.WriteLine("callButton id: " + callButton.ID);
-                    System.Console.WriteLine("button in the list id: " + callButtonsList[i].ID);
                 }
 
             }
@@ -71,13 +69,14 @@ namespace Commercial_Controller
             }
         }
         //  Simulate when a user press a button on a floor to go back to the first floor
-        public void requestElevator(int userPosition, string direction)
+        public Elevator requestElevator(int userPosition, string direction)
         {
             Elevator elevator = findElevator(userPosition, direction);
-            elevator.addNewRequest(1);
+            elevator.addNewRequest(userPosition);
             elevator.move();
             elevator.addNewRequest(1);
             elevator.move();
+            return elevator;
         }
 
 
@@ -100,6 +99,10 @@ namespace Commercial_Controller
                     {
                         bestElevatorInformations = checkIfElevatorIsBetter(3, elevator, bestElevatorInformations, requestedFloor);
                     }
+                    else if (elevator.currentFloor > 1 && elevator.direction == "down")
+                    {
+                        bestElevatorInformations = checkIfElevatorIsBetter(3, elevator, bestElevatorInformations, requestedFloor);
+                    }
                     else if (elevator.status == "idle")
                     {
                         bestElevatorInformations = checkIfElevatorIsBetter(4, elevator, bestElevatorInformations, requestedFloor);
@@ -111,7 +114,6 @@ namespace Commercial_Controller
 
                     }
 
-                    System.Console.WriteLine("info best elevator " + bestElevatorInformations.bestElevator.ID);
                 }
             }
             else
@@ -163,12 +165,7 @@ namespace Commercial_Controller
                     info.referenceGap = gap;
                 }
 
-                System.Console.WriteLine("gap: " + gap);
             }
-            System.Console.WriteLine("info bestScore:" + info.bestScore);
-            System.Console.WriteLine("info bestElevatorID:" + info.bestElevator.ID);
-            System.Console.WriteLine("info reference Gap: " + info.referenceGap);
-            System.Console.WriteLine("info : " + info.bestElevator.ID);
 
             return info;
 
