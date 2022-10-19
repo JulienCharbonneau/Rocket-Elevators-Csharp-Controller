@@ -6,10 +6,17 @@ namespace Commercial_Controller
         static void Main()
         {
 
-            Column testColumn = new Column(1, "online", 2, 3, false);
-            testColumn.bestElevatorInformations.bestElevator = testColumn.elevatorsList[2];
-            testColumn.findElevator(3, "up");
-            System.Console.WriteLine("this is a column: " + testColumn);
+
+
+
+
+            Battery testBattery = new Battery(1, 2, 10, 2, 2);
+            System.Console.WriteLine("this is a battery: " + testBattery.ID);
+
+            // Column testColumn = new Column(1, "online", 2, 3, false);
+            // testColumn.bestElevatorInformations.bestElevator = testColumn.elevatorsList[2];
+            // testColumn.findElevator(3, "up");
+            // System.Console.WriteLine("this is a column: " + testColumn);
 
 
 

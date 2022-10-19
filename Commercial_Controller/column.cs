@@ -17,13 +17,14 @@ namespace Commercial_Controller
         public List<Elevator> elevatorsList = new List<Elevator>();
 
 
-        public Column(int _ID, string _status, int _amountOfFloors, int _amountOfElevators, bool _isBasement)
+        public Column(int _ID, string _status, int _amountOfFloors, int _amountOfElevators, List<int> servedFloors, bool _isBasement)
         {
             ID = _ID;
             status = _status;
             amountOfFloors = _amountOfFloors;
             amountOfElevators = _amountOfElevators;
             isBasement = _isBasement;
+            servedFloorsList = servedFloors;
             createElevators(amountOfFloors, amountOfElevators);
             createCallButtons(amountOfFloors, isBasement);
         }
@@ -56,7 +57,6 @@ namespace Commercial_Controller
                     System.Console.WriteLine("button in the list id: " + callButtonsList[i].ID);
                 }
 
-                System.Console.WriteLine("next button floor:" + buttonFloor);
             }
         }
 
@@ -68,7 +68,6 @@ namespace Commercial_Controller
                 Elevator elevator = new Elevator(elevatorID, "idle", _amountOfElevators, 1);
                 elevatorsList.Add(elevator);
                 elevatorID++;
-                System.Console.WriteLine("elevator in the list id:" + elevatorsList[i].ID);
             }
         }
         //  Simulate when a user press a button on a floor to go back to the first floor
