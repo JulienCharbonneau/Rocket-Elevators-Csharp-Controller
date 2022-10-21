@@ -1,13 +1,12 @@
 # Rocket-Elevators-Csharp-Controller
-This is the template to use for the C# commercial controller. In the Commercial_Controller folder, you will find the classes that should be used along with some methods described in the requirements. The necessary files to run some tests are also included, in the Commercial_Controller.Tests folder.
+This project is about implementing an elevator controller for commercial purposes.  The program is based on a pseudocode file given and for this version written in C#. C# ist a compiled language  designed by Microsoft and because ist a compiled language it is faster than an interpreted language but handles less abstraction.Here a [video](https://drive.google.com/file/) that I explain my work
 
-### Installation
 
-As long as you have **.NET 6.0** installed on your computer, nothing more needs to be installed:
-
-The code to run the scenarios is included in the Commercial_Controller folder, and can be executed there with:
-
-`dotnet run <SCENARIO-NUMBER>`
+### Usage 
+To run the script with dotnet run the command in the 
+`donet run`
+Make sure to be at the right path
+`~/Desktop/Rocket-Elevators-Csharp-Controller/Commercial_Controller$`
 
 ### Running the tests
 
@@ -15,18 +14,13 @@ To launch the tests, make sure to be at the root of the repository and run:
 
 `dotnet test`
 
-With a fully completed project, you should get an output like:
+![](https://github.com/JulienCharbonneau/Rocket-Elevators-Csharp-Controller/blob/main/Peek%202022-10-20%2019-26.gif)
 
-![Screenshot from 2021-06-15 17-31-02](https://user-images.githubusercontent.com/28630658/122128889-3edfa500-ce03-11eb-97d0-df0cc6a79fed.png)
 
-You can also get more details about each test by adding the `-v n` flag: 
+## Description
+This program creates a number of columns and elevators as needed and supports the needs of elevator request button and floor access request button with a system-based efficiency management point allowing to evaluate the best choice taking into account the floor where the request was initiated versus the availability and the direction of the cage. For commercial buildings, the first column is assigned at the basement and others are split between floors to serve.
 
-`dotnet test -v n` 
 
-which should give something like: 
+#### Dependencies
 
-![Screenshot from 2021-06-15 18-00-52](https://user-images.githubusercontent.com/28630658/122129140-a8f84a00-ce03-11eb-8807-33d7eab8c387.png)
-
-Make sure to only edit files in the Commercial_Controller folder. The test and scenarios files can be left in your final project. The grader will run tests similar to the ones provided.
-
-Of course, make sure to edit this Readme file to describe your own project!
+`C#` `dotnet`
